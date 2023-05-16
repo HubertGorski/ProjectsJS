@@ -12,14 +12,31 @@ const NewGameUrlInput = NewGameBox.querySelector('input[name="image-url"]');
 const NewGameRatingInputs = NewGameBox.querySelectorAll('input[name="rating"]');
 const NewGameStatusInputs = NewGameBox.querySelectorAll('input[name="status"]');
 
-// const gamesBase = [];
-// const game = {
-//   title: "title",
-//   url: "imgs/image-solid.png",
-//   rate: "rate",
-//   status: "status",
-// };
+let gamesBase = games;
+let optionsBase = gameOptions;
+let deleteBtnsBase = deleteBtns;
 
+const viewOptions = () => {
+  gamesBase.forEach(function (game, i) {
+    game.addEventListener("click", () => {
+      for (let j = 0; j < gamesBase.length; j++) {
+        gamesBase[j].classList.remove("active");
+        optionsBase[j].classList.remove("active");
+      }
+      game.classList.add("active");
+      optionsBase[i].classList.add("active");
+    });
+  });
+};
+const deleteBtnHandler = () => {
+  deleteBtnsBase.forEach(function (deleteBtn, i) {
+    deleteBtn.addEventListener("click", () => {
+      gamesList.removeChild(gamesList.firstChild);
+      console.log(gamesBase[i]);
+      console.log(gamesList);
+    });
+  });
+};
 const showNewGameBox = () => {
   NewGameBox.classList.add("active");
   backdrop.classList.add("active");
@@ -60,32 +77,46 @@ const newGameInBaseHandler = () => {
   if (!NewGameTitleInput.value || !rate || !status) {
     return;
   }
-  console.log(newGame);
+  // const newGame = {
+  //   title: title,
+  //   url: url,
+  //   rate: rate,
+  //   status: status,
+  // };
+  hideNewGameBox();
 
   const newLi = document.createElement("li");
   newLi.classList.add("games-list__game");
+  const newDiv = document.createElement("div");
+  const newDiv2 = document.createElement("div");
+  newDiv.classList.add("game");
+  newDiv2.classList.add("game-options");
+  newDiv.innerHTML = `
+  <img class="game-img" src="imgs/azul.png" alt="empty img" />
+  <div class="game__content">
+    <span class="game__content-el content-el--title">Azul</span>
+    <span class="game__content-el content-el--ratio">
+    </span>
+    <ul class="game__content-el content-el--status">
+      <li>OK</li>
+      <li class="active">NOT YET</li>
+      <li>NO</li>
+    </ul>
+  </div>`;
+  newDiv2.innerHTML = `            <button class="btn btn--edit-game">Edit</button>
+  <button class="btn btn--delete-game">Delete</button>`;
   gamesList.appendChild(newLi);
+  newLi.appendChild(newDiv);
+  newLi.appendChild(newDiv2);
+  gamesBase = document.querySelectorAll(".game");
+  optionsBase = document.querySelectorAll(".game-options");
+  deleteBtnsBase = document.querySelectorAll(".btn--delete-game");
+  viewOptions();
+  deleteBtnHandler();
 };
-
+viewOptions();
+deleteBtnHandler();
 addNewGameBtn.addEventListener("click", showNewGameBox);
 backdrop.addEventListener("click", hideNewGameBox);
 cancelBtn.addEventListener("click", hideNewGameBox);
 acceptBtn.addEventListener("click", newGameInBaseHandler);
-
-games.forEach(function (game, i) {
-  game.addEventListener("click", () => {
-    for (let j = 0; j < games.length; j++) {
-      games[j].classList.remove("active");
-      gameOptions[j].classList.remove("active");
-    }
-    game.classList.add("active");
-    gameOptions[i].classList.add("active");
-  });
-});
-
-//test
-deleteBtns.forEach(function (deleteBtn, i) {
-  deleteBtn.addEventListener("click", () => {
-    console.log(games[i]);
-  });
-});
