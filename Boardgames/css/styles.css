@@ -24,6 +24,7 @@ body {
   left: 0;
   height: 100vh;
   width: 100vw;
+  z-index: 4;
 }
 
 /* ADD GAME BOX --------------------------  */
@@ -38,7 +39,7 @@ body {
   border-radius: 1.2rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 2.4rem;
-  z-index: 2;
+  z-index: 5;
 }
 .add-game-box.active {
   display: block;
@@ -152,6 +153,7 @@ body {
 
 .game-img {
   max-height: 20rem;
+  max-width: 20rem;
 }
 .game__content {
   display: flex;
@@ -174,6 +176,7 @@ body {
   border-top-left-radius: 1.2rem;
   border-bottom-left-radius: 1.2rem;
   padding: 0 0.6rem;
+  align-self: flex-end;
 }
 .star {
   stroke: #ffe8cc;
