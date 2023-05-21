@@ -10,7 +10,7 @@ const backdrop = document.querySelector(".backdrop");
 const cancelBtn = document.querySelector(".btn--cancel");
 const acceptBtn = document.querySelector(".btn--ok");
 
-const shownewGameBox = () => {
+export const shownewGameBox = () => {
   newGameBox.classList.add("active");
   backdrop.classList.add("active");
 };
@@ -25,6 +25,13 @@ const hidenewGameBox = () => {
   for (const statusInput of newGameStatusInputs) {
     statusInput.checked = false;
   }
+};
+
+export const getValues = (title, url, rate, status) => {
+  newGameTitleInput.value = title;
+  newGameUrlInput.value = url;
+  newGameRatingInputs[rate - 1].checked = true;
+  newGameStatusInputs[status].checked = true;
 };
 
 const newGameInBaseHandler = () => {

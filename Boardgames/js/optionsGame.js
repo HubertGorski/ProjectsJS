@@ -1,4 +1,27 @@
-//const editGame = (gameEl) => {};
+import { shownewGameBox, getValues } from "./newGameBox.js";
+
+const editGame = (gameEl) => {
+  const ratio = gameEl.currentTarget.gameEl.querySelectorAll(".fill").length;
+  const url = gameEl.currentTarget.gameEl.querySelector(".game-img").src;
+  const statusPanel = gameEl.currentTarget.gameEl.querySelector(
+    ".game__content-el.content-el--status"
+  );
+  const statusContent = statusPanel.querySelector(".active");
+  const status =
+    statusContent.textContent.trim() === "NOT YET"
+      ? 0
+      : statusContent.textContent.trim() === "OK"
+      ? 2
+      : statusContent.textContent.trim() === "NO"
+      ? 1
+      : "";
+
+  const title = gameEl.currentTarget.gameEl.querySelector(
+    ".game__content-el.content-el--title"
+  ).textContent;
+  getValues(title, url, ratio, status);
+  shownewGameBox();
+};
 
 const removeGame = (gameEl) => {
   gameEl.currentTarget.gameEl.remove();
@@ -10,22 +33,27 @@ const viewOptions = (game) => {
   let activeGame = document.querySelector(".game.active");
   let games = document.querySelectorAll(".games-list__game");
   let deleteBtn = game.currentTarget.gameEl.querySelector(".btn--delete-game");
+  let editBtn = game.currentTarget.gameEl.querySelector(".btn--edit-game");
   deleteBtn.gameEl = deleteBtn.parentNode.parentNode;
+  editBtn.gameEl = deleteBtn.parentNode.parentNode;
   for (let i = 0; i < games.length; i++) {
     games[i].querySelector(".game").classList.remove("active");
     games[i].querySelector(".game-options").classList.remove("active");
     deleteBtn.removeEventListener("click", removeGame);
+    editBtn.removeEventListener("click", editGame);
   }
 
   if (gamePanel === activeGame) {
     gamePanel.classList.remove("active");
     gameOptions.classList.remove("active");
     deleteBtn.removeEventListener("click", removeGame);
+    editBtn.removeEventListener("click", editGame);
   }
   if (gamePanel !== activeGame) {
     gamePanel.classList.add("active");
     gameOptions.classList.add("active");
     deleteBtn.addEventListener("click", removeGame);
+    editBtn.addEventListener("click", editGame);
   }
 };
 
