@@ -1,5 +1,6 @@
 import { viewOptionsHandler } from "./optionsGame.js";
 
+const acceptBtn = document.querySelector(".btn--ok");
 let gamesList = document.querySelector(".games-list");
 let games = document.querySelectorAll(".games-list__game");
 const starIcon = `                <svg
@@ -29,7 +30,7 @@ class="star"
 />
 </svg>`;
 
-export const generateGameInDesktop = (title, url, rate, status) => {
+export const generateGameInDesktop = (title, url, rate, status, index = -1) => {
   const newLi = document.createElement("li");
   newLi.classList.add("games-list__game");
   const newDiv = document.createElement("div");
@@ -67,9 +68,14 @@ export const generateGameInDesktop = (title, url, rate, status) => {
   </div>`;
   newDiv2.innerHTML = `            <button class="btn btn--edit-game">Edit</button>
   <button class="btn btn--delete-game">Delete</button>`;
+
   gamesList.appendChild(newLi);
   newLi.appendChild(newDiv);
   newLi.appendChild(newDiv2);
+  if (index >= 0) {
+    gamesList.replaceChild(gamesList.lastChild, gamesList.childNodes[index]);
+    acceptBtn.index = -1;
+  }
   games = document.querySelectorAll(".games-list__game");
   viewOptionsHandler();
 };

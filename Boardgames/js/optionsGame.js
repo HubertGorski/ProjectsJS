@@ -1,11 +1,15 @@
 import { shownewGameBox, getValues } from "./newGameBox.js";
+const acceptBtn = document.querySelector(".btn--ok");
 
 const editGame = (gameEl) => {
-  const ratio = gameEl.currentTarget.gameEl.querySelectorAll(".fill").length;
-  const url = gameEl.currentTarget.gameEl.querySelector(".game-img").src;
-  const statusPanel = gameEl.currentTarget.gameEl.querySelector(
+  const game = gameEl.currentTarget.gameEl;
+  const ratio = game.querySelectorAll(".fill").length;
+  const url = game.querySelector(".game-img").src;
+  const statusPanel = game.querySelector(
     ".game__content-el.content-el--status"
   );
+  const index = Array.from(game.parentNode.children).indexOf(game);
+  acceptBtn.index = index;
   const statusContent = statusPanel.querySelector(".active");
   const status =
     statusContent.textContent.trim() === "NOT YET"
@@ -16,7 +20,7 @@ const editGame = (gameEl) => {
       ? 1
       : "";
 
-  const title = gameEl.currentTarget.gameEl.querySelector(
+  const title = game.querySelector(
     ".game__content-el.content-el--title"
   ).textContent;
   getValues(title, url, ratio, status);

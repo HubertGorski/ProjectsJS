@@ -34,12 +34,12 @@ export const getValues = (title, url, rate, status) => {
   newGameStatusInputs[status].checked = true;
 };
 
-const newGameInBaseHandler = () => {
+const newGameInBaseHandler = (index) => {
   let title = "";
   let url = "imgs/image-solid.png";
   let rate = 0;
   let status = 0;
-
+  index = index.currentTarget.index;
   title = newGameTitleInput.value;
 
   if (newGameUrlInput.value) {
@@ -61,9 +61,8 @@ const newGameInBaseHandler = () => {
   if (!title || !rate || !status) {
     return;
   }
-
   hidenewGameBox();
-  generateGameInDesktop(title, url, rate, status);
+  generateGameInDesktop(title, url, rate, status, index);
 };
 
 addNewGameBtn.addEventListener("click", shownewGameBox);
