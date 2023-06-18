@@ -17,18 +17,19 @@ const dragDropHandler = () => {
 
   squaresBoard.forEach((square) => {
     square.addEventListener("dragover", (e) => {
-      e.preventDefault();
-    });
-    square.addEventListener("dragenter", (e) => {
-      e.preventDefault();
-      square.classList.add("hovered");
+      if (squareActive != null) {
+        e.preventDefault();
+        square.classList.add("hovered");
+      }
     });
     square.addEventListener("dragleave", (e) => {
       square.classList.remove("hovered");
     });
+    square.addEventListener("mouseleave", (e) => {
+      square.classList.remove("hovered");
+    });
     square.addEventListener("drop", (e) => {
       squareActive.remove();
-      // square.appendChild(squareActive);
       square.classList.remove("hovered");
       square.style.setProperty(
         "background-color",
