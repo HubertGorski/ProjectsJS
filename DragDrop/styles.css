@@ -1,0 +1,62 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-size: 10px; */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Dosis", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  background-color: #555;
+  font-size: 2.4rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  background-color: #666;
+  margin: 6.4rem;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.board__square {
+  height: 7rem;
+}
+
+.board__square:hover,
+.board__square.hovered {
+  background-color: #777;
+}
+
+.board__square.occupied {
+  border: 0.1rem solid #111;
+  background-color: #888;
+}
+
+.hand {
+  gap: 0.6rem;
+}
+
+.hand__square {
+  height: 10rem;
+  width: 10rem;
+  background-color: #fff;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.hand__square:hover,
+.hand__square.hovered {
+  transform: translateY(-0.5rem);
+}
