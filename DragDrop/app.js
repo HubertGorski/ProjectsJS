@@ -17,7 +17,7 @@ const dragDropHandler = () => {
 
   squaresBoard.forEach((square) => {
     square.addEventListener("dragover", (e) => {
-      if (squareActive != null) {
+      if (squareActive != null && !square.classList.contains("occupy")) {
         e.preventDefault();
         square.classList.add("hovered");
       }
@@ -25,10 +25,8 @@ const dragDropHandler = () => {
     square.addEventListener("dragleave", (e) => {
       square.classList.remove("hovered");
     });
-    square.addEventListener("mouseleave", (e) => {
-      square.classList.remove("hovered");
-    });
     square.addEventListener("drop", (e) => {
+      square.classList.add("occupy");
       squareActive.remove();
       square.classList.remove("hovered");
       square.style.setProperty(
@@ -59,9 +57,7 @@ const render = (el, size) => {
   for (let square = 1; square <= size; square++) {
     const squareEl = document.createElement("div");
     squareEl.classList.add(el.replace(".", "") + "__square");
-    squareEl.classList.add("flex-center");
     elEl.append(squareEl);
-
     if (elEl === document.querySelector(gameEl.Hand)) {
       const color = Math.round(Math.random() * 4);
       squareEl.style.backgroundColor = colors[color];
