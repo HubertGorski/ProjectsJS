@@ -28,13 +28,14 @@ const hexName = [
   "Adelina Assumpta",
   "Zaki Christine",
 ];
-const hexType = {
+const hexTypeToColor = {
   Enemy: "red",
   Buff: "blue",
   Neutral: "yellow",
   Dark: "black",
   Friend: "green",
 };
+
 export const hexs = [];
 class Hex {
   constructor(name, type, index) {
@@ -45,21 +46,19 @@ class Hex {
   }
 }
 
+const hexColors = [
+  hexTypeToColor.Buff,
+  hexTypeToColor.Dark,
+  hexTypeToColor.Enemy,
+  hexTypeToColor.Friend,
+  hexTypeToColor.Neutral,
+];
+
 const createRandomHexs = () => {
-  for (let x = 0; x < 24; x++) {
-    let hexTypeRandom = Math.floor(Math.random() * 5);
-    let hexTypeActual =
-      hexTypeRandom == 0
-        ? hexType.Buff
-        : hexTypeRandom == 1
-        ? hexType.Dark
-        : hexTypeRandom == 2
-        ? hexType.Enemy
-        : hexTypeRandom == 3
-        ? hexType.Friend
-        : hexTypeRandom == 4
-        ? hexType.Neutral
-        : "";
+  const BOARD_SIZE = 24;
+  for (let x = 0; x < BOARD_SIZE; x++) {
+    let hexTypeRandom = Math.floor(Math.random() * hexColors.length);
+    let hexTypeActual = hexColors[hexTypeRandom];
     new Hex(hexName[x], hexTypeActual, x);
   }
 };

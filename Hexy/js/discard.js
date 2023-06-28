@@ -14,9 +14,6 @@ const makeDiscardList = (hex) => {
   </div>
   `;
     discardEl.style.backgroundColor = `${hex[1]}`;
-    discardEl.classList.add = `${hex[1]}`;
-    console.log(discardEl);
-    console.log(`${hex[1]}`);
   }
 };
 const makeDiscardCover = (hex) => {
