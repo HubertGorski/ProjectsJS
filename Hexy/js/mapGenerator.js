@@ -4,8 +4,8 @@ const renderMap = (mapSettings) => {
   const spaceX = 12.7;
   let yCoord = mapSettings.yCoordStart;
   let xCoord = mapSettings.xCoordStart;
-  for (let y = 0; y <= mapSettings.size; y++) {
-    for (let x = 0; x < mapSettings.size; x++) {
+  for (let y = 1; y <= mapSettings.size; y++) {
+    for (let x = 1; x <= mapSettings.size; x++) {
       const tile = document.createElement("div");
       tile.style.top = `${yCoord}rem`;
       tile.style.left = `${xCoord}rem`;

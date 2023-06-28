@@ -27,14 +27,13 @@ const addCardHexChoice = (el) => {
 };
 
 const showCardsHexChoice = () => {
-  let randomNum;
   const choiceBoxEl = document.querySelector(".choice-box");
   const darkBoxEl = document.querySelector(".dark-box");
   choiceBoxEl.classList.add("active");
   darkBoxEl.classList.add("active");
 
   for (let x = 0; x < 2; x++) {
-    randomNum = Math.floor(Math.random() * hexs.length);
+    const randomNum = Math.floor(Math.random() * hexs.length);
     hexsChoice.push(hexs[randomNum]);
     hexs.splice(randomNum, 1);
   }
