@@ -2,9 +2,13 @@ import { discard, addHexToDiscard, showCardsDiscard } from "./discard.js";
 import { hexs } from "./randomHexsGenerator.js";
 const hexsChoice = [];
 
-const addCardHexChoice = (el) => {
+const removeUnnecessaryClasses = (el) => {
   el.currentTarget.classList.remove("enable");
   el.currentTarget.classList.remove("empty");
+};
+
+const addCardHexChoice = (el) => {
+  removeUnnecessaryClasses(el);
   el.currentTarget.innerHTML = `
   <div class="hex-inner__content">
   <span>${hexsChoice[0][2]}</span>

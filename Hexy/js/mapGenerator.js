@@ -1,29 +1,43 @@
-const renderMap = (xCoordStart, yCoordStart, figure, size) => {
+const renderMap = (mapSettings) => {
   const board = document.querySelector(".board");
   const spaceY = 12.9;
   const spaceX = 12.7;
-  let yCoord = yCoordStart;
-  let xCoord = xCoordStart;
-  for (let y = 0; y <= size; y++) {
-    for (let x = 0; x < size; x++) {
-      const el = document.createElement("div");
-      el.style.top = `${yCoord}rem`;
-      el.style.left = `${xCoord}rem`;
-      el.classList.add(figure);
-      if (figure === "hex-outer") {
-        const div = document.createElement("div");
-        div.classList.add("hex-inner");
-        div.classList.add("empty");
-        el.append(div);
+  let yCoord = mapSettings.yCoordStart;
+  let xCoord = mapSettings.xCoordStart;
+  for (let y = 0; y <= mapSettings.size; y++) {
+    for (let x = 0; x < mapSettings.size; x++) {
+      const tile = document.createElement("div");
+      tile.style.top = `${yCoord}rem`;
+      tile.style.left = `${xCoord}rem`;
+      tile.classList.add(mapSettings.figure);
+      if (mapSettings.figure === "hex-outer") {
+        const hex = document.createElement("div");
+        hex.classList.add("hex-inner");
+        hex.classList.add("empty");
+        tile.append(hex);
       }
-      board.append(el);
+      board.append(tile);
       xCoord = xCoord + spaceX;
       yCoord = yCoord + spaceY;
     }
-    yCoord = yCoordStart + spaceY * y;
-    xCoord = xCoordStart - spaceX * y;
+    yCoord = mapSettings.yCoordStart + spaceY * y;
+    xCoord = mapSettings.xCoordStart - spaceX * y;
   }
 };
 
-renderMap(52.8, 4, "hex-outer", 5);
-renderMap(58.2, 22.1, "square", 4);
+const mapSettingsHexs = {
+  xCoordStart: 52.8,
+  yCoordStart: 4,
+  figure: "hex-outer",
+  size: 5,
+};
+const mapSettingsSquares = {
+  xCoordStart: 58.2,
+  yCoordStart: 22.1,
+  figure: "square",
+  size: 4,
+};
+export const generateBoard = () => {
+  renderMap(mapSettingsHexs);
+  renderMap(mapSettingsSquares);
+};
