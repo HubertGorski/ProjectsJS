@@ -4,11 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="app1.js" defer></script>
-    <script type="module" src="app2.js" defer></script>
+    <script type="module" src="js/app.js" defer></script>
     <title>HexyGame HubVersion</title>
   </head>
   <body>
+    <div class="dark-box">
+      <div class="box choice-box"></div>
+      <div class="box discard-box">
+        <div class="discard-box__exit">X</div>
+      </div>
+    </div>
     <div class="board"></div>
+    <div class="deck">
+      <div class="deck__hexs">
+        <div class="hex-outer">
+          <div class="hex-inner"></div>
+        </div>
+      </div>
+      <div class="deck__discard">
+        <div class="hex-outer">
+          <div class="hex-inner"></div>
+        </div>
+      </div>
+      <div class="deck__squares">
+        <div class="square"></div>
+      </div>
+    </div>
   </body>
 </html>

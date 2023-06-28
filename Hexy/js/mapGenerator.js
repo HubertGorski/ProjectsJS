@@ -11,9 +11,10 @@ const renderMap = (xCoordStart, yCoordStart, figure, size) => {
       el.style.left = `${xCoord}rem`;
       el.classList.add(figure);
       if (figure === "hex-outer") {
-        el.innerHTML = `
-        <div class="hex-inner"></div>
-        `;
+        const div = document.createElement("div");
+        div.classList.add("hex-inner");
+        div.classList.add("empty");
+        el.append(div);
       }
       board.append(el);
       xCoord = xCoord + spaceX;
@@ -23,5 +24,6 @@ const renderMap = (xCoordStart, yCoordStart, figure, size) => {
     xCoord = xCoordStart - spaceX * y;
   }
 };
+
 renderMap(52.8, 4, "hex-outer", 5);
 renderMap(58.2, 22.1, "square", 4);
